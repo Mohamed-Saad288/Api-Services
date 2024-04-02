@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('likes')->default(0);
             $table->text('content')->nullable();
-
             $table->timestamps();
         });
     }
