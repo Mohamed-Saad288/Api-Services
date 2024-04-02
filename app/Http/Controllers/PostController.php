@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -11,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Post::all();
     }
 
     /**
@@ -19,7 +21,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = Validator::make($request->all(),[
+            'title' => 'required'
+        ]);
+        if ($attributes->fails())
+        {
+            return $attributes->errors();
+        }
+        return Post::create($request->all());
     }
 
     /**
@@ -27,7 +36,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Post::find($id);
     }
 
     /**
@@ -35,7 +44,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->all());
+        return $post;
+
     }
 
     /**
@@ -43,6 +55,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Post::destroy($id);
     }
 }

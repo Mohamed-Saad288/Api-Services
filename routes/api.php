@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('/posts',PostController::class);
+Route::apiResource('/posts',PostController::class);
 
 
 

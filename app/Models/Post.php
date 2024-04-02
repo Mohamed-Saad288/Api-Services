@@ -15,4 +15,8 @@ class Post extends Model
         'content',
         'slug'
     ];
+
+    protected $casts = [
+        'likes' => 'integer'
+    ];
 }
